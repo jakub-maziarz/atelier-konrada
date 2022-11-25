@@ -50,7 +50,7 @@ def catalog(request, slug=''):
     sort_product = request.GET.get('sort_product', "no_sort")
     categories = Category.objects.all().order_by('name')
     if slug != '':
-        category = Category.objects.filter(slug=slug)[:1]
+        category = Category.objects.filter(slug=slug)[:1][0]
         products = Product.objects.filter(categories=category)
     else:
         category = ""
