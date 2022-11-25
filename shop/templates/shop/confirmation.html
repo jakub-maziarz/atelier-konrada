@@ -1,0 +1,38 @@
+{% extends 'shop/main.html' %}
+{% block content %}
+<div class="container-lg confirmation-container">
+  <div class="order-steps">
+    <div class="order-step">
+      <span>Koszyk</span>
+      <i class="fa-solid fa-basket-shopping"></i>
+    </div>
+    <div class="order-step">
+      <span>Dane</span>
+      <i class="fa-solid fa-id-card"></i>
+    </div>
+    <div class="order-step">
+      <span>Podsumowanie</span>
+      <i class="fa-solid fa-list-check"></i>
+    </div>
+    <div class="order-step active">
+      <span>Potwierdzenie</span>
+      <i class="fa-solid fa-check"></i>
+    </div>
+  </div>
+  <div class="conf">
+    <div class="conf-info px-3">
+      <h1 class="fs-1 fw-bold">Zamówienie: <span class="order-number">{{order_number}}</span> zostało złożone</h1>
+      <p>Wszystkie potrzebne informacje znaleźć można we wiadomości e-mail</p>
+      <p>Za kilka sekund zostaniesz przekierowany/a do strony głównej</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+  document.cookie = "client=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  setTimeout(() => {
+    window.location.href = "{{url}}";
+  }, 5000);
+</script>
+{% endblock scripts %}

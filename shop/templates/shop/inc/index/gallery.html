@@ -1,0 +1,29 @@
+{% load static %}
+<div class="container-lg gallery-container">
+  <div class="gallery-header">
+    <div class="gallery-header-text d-flex align-items-center justify-content-center">
+      <div class="hr-div flex-grow-1">
+        <hr class="dark-hr" />
+      </div>
+      <h2 class="text-center fs-4 px-2">Zrealizowane Projekty</h2>
+      <div class="hr-div flex-grow-1">
+        <hr class="dark-hr" />
+      </div>
+    </div>
+    <p class="text-center">Unikatowe rękodzieła czynią wnętrze wyjatkowym. Produkty z tej kategorii są dostępne tylko w jednym egzemplarzu.<br /><a href="{% url 'catalog' slug='unikaty' %}">Obejrzyj wykonane realizacje.</a></p>
+  </div>
+  <div class="gallery-div">
+    <div class="swiper gallerySwiper">
+      <div class="swiper-wrapper">
+        {% for item in gallery_products %}
+        <div class="swiper-slide">
+          <a href="{% url 'product' slug=item.slug %}">
+            <img src="{{ item.get_thumbnail_image }}" />
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>

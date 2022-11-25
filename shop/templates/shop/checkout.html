@@ -1,0 +1,100 @@
+{% extends 'shop/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container-lg checkout-container">
+  <div class="order-steps">
+    <div class="order-step">
+      <span>Koszyk</span>
+      <i class="fa-solid fa-basket-shopping"></i>
+    </div>
+    <div class="order-step">
+      <span>Dane</span>
+      <i class="fa-solid fa-id-card"></i>
+    </div>
+    <div class="order-step active">
+      <span>Podsumowanie</span>
+      <i class="fa-solid fa-list-check"></i>
+    </div>
+    <div class="order-step">
+      <span>Potwierdzenie</span>
+      <i class="fa-solid fa-check"></i>
+    </div>
+  </div>
+  {% for cart_product in cart_products %}
+  <div class="order-product">
+    <img src="{{ cart_product.product.get_thumbnail_image }}" class="product-image" />
+    <a href="#">{{ cart_product.product.name }}</a>
+    <p class="qty">{{cart_product.quantity}}</p>
+    <p class="price">{{cart_products_prices|get_item:cart_product.product.name}} zł</p>
+  </div>
+  {% endfor %}
+  <p class="total"><span class="total-text">Razem</span><span class="total-price">{{total_cart_price}} zł</span></p>
+  <div class="order-info-payment">
+    <h2 class="data-header">Dane klienta i adres wysyłki</h2>
+    <div class="order-data-final">
+      <div class="client-info">
+        <p>
+          <span class="caption"> Imię i nazwisko </span>
+          <span class="info"> {{cartData|get_item:'customer_firstname'}} {{cartData|get_item:'customer_lastname'}} </span>
+        </p>
+        <p>
+          <span class="caption"> Numer telefonu </span>
+          <span class="info"> {{cartData|get_item:'customer_phone'}} </span>
+        </p>
+        <p>
+          <span class="caption"> Adres e-mail </span>
+          <span class="info"> {{cartData|get_item:'customer_email'}} </span>
+        </p>
+      </div>
+      <div class="shipping-address">
+        <p>
+          <span class="caption"> Adres wysyłki </span>
+          <span class="info"> {{cartData|get_item:'to_zip'}} {{cartData|get_item:'to_city'}} </span>
+          <span class="info"> ul. {{cartData|get_item:'to_street'}} {{cartData|get_item:'to_house_number'}} </span>
+          <span class="info"> {% if cartData|get_item:'address' %} {{cartData|get_item:'address'}} {% endif %} </span>
+        </p>
+      </div>
+    </div>
+    <h2 class="payment-header">Płatność</h2>
+    <div class="payment-option">
+      <i class="fa-solid fa-building-columns fa-xl"></i>
+      <span class="payment-desc">Przelew bankowy</span>
+    </div>
+    {% if cartData|get_item:'customer_firstname_other' %}
+    <h2 class="data-header-alternative">Dostawa pod inny adres</h2>
+    <div class="order-data-final-alternative">
+      <div class="client-info">
+        <p>
+          <span class="caption"> Imię i nazwisko </span>
+          <span class="info"> {{cartData|get_item:'customer_firstname_other'}} {{cartData|get_item:'customer_lastname_other'}} </span>
+        </p>
+        <p>
+          <span class="caption"> Numer telefonu </span>
+          <span class="info"> {{cartData|get_item:'customer_phone_other'}} </span>
+        </p>
+        <p>
+          <span class="caption"> Adres e-mail </span>
+          <span class="info"> {{cartData|get_item:'customer_email_other'}} </span>
+        </p>
+      </div>
+      <div class="shipping-address">
+        <p>
+          <span class="caption"> Adres wysyłki </span>
+          <span class="info"> {{cartData|get_item:'to_zip_other'}} {{cartData|get_item:'to_city_other'}} </span>
+          <span class="info"> ul. {{cartData|get_item:'to_street_other'}} {{cartData|get_item:'to_house_number_other'}} </span>
+          <span class="info"> {% if cartData|get_item:'address_other' %} {{cartData|get_item:'address_other'}} {% endif %} </span>
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="order-navigation">
+    <a href="{% url 'data' %}" class="py-2 px-3 previous">Wstecz</a>
+    {% csrf_token %}
+    <button type="submit" class="py-2 px-3 next place-order">Złóż zamówienie</button>
+  </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'shop/js/cart-checkout.js' %}"></script>
+{% endblock scripts %}

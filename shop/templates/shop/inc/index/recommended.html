@@ -1,0 +1,30 @@
+<div class="container-lg recommended-container">
+  <div class="recommended-header d-flex align-items-center justify-content-center">
+    <div class="hr-div flex-grow-1">
+      <hr class="dark-hr" />
+    </div>
+    <h2 class="text-center fs-4 px-2">Polecane Produkty</h2>
+    <div class="hr-div flex-grow-1">
+      <hr class="dark-hr" />
+    </div>
+  </div>
+  <div class="recommended-div">
+    <div id="swiper-button-prev-recommended" class="swiper-button-prev"></div>
+    <div class="swiper recommendedSwiper">
+      <div class="swiper-wrapper">
+        {% for item in recommended_products %}
+        <div class="recommended-product swiper-slide">
+          <a href="{% url 'product' slug=item.slug %}" class="d-block">
+            <img src="{{ item.get_thumbnail_image }}" class="d-block" />
+          </a>
+          <div class="product-desc">
+            <h5 class="mt-2"><a href="{% url 'product' slug=item.slug %}">{{ item.name }}</a></h5>
+            <p>{{ item.price }} zł</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="swiper-button-next-recommended" class="swiper-button-next"></div>
+  </div>
+</div>

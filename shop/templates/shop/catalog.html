@@ -1,0 +1,115 @@
+{% extends 'shop/main.html' %} 
+{% load static %}
+{% block title %} Atelier Konrada - Sklep {% endblock title %} 
+{% block content %}
+<div class="container-lg catalog-container">
+    <div class="catalog-header">
+        <ul class="categories-nav">
+            <li><a href="{% url 'catalog' %}">Katalog</a></li>
+            {% if category %}
+            / <li><a href="{% url 'catalog' category.slug %}">{{category.name}}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="catalog-content">
+        <div class="catalog-menu">
+            <div class="catalog-categories">
+                <div class="categories-header">
+                    <h2>Kategorie</h2>
+                    <i class="fa-solid fa-plus categories-toggle"></i>
+                </div>
+                <ul class="categories-list">
+                    <li><a href="{% url 'catalog' %}">Wszystkie</a></li>
+                    {% for item in categories %}
+                        <li><a href="{% url 'catalog' item.slug %}">{{item.name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="catalog-filter">
+                <div class="filter-header">
+                    <h2>Filtruj</h2>
+                    <i class="fa-solid fa-plus filter-toggle"></i>
+                </div>
+                <div class="filter-options">
+                    <h3>Cena</h3>
+                    <div class="price-inputs">
+                        <input type="text" name="priceStart" id="startPrice" placeholder="Od" value="{% if from_price %}{{from_price}}{% endif %}">
+                        <input type="text" name="priceEnd" id="endPrice" placeholder="Do" value="{% if to_price %}{{to_price}}{% endif %}">
+                    </div>
+                    <div class="price-actions">
+                        <button type="button" id="filter-button">Filtruj</button>
+                        {% if from_price or to_price %}
+                        <button type="button" id="r-filter-button" onchange="resetFromToPrice();">Usuń filtr</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="additional-menu">
+            <div class="availability">
+                <label for="product-state">Status</label>
+                <select name="product-state" id="state-product">
+                    <option {% if product_state == "" or product_state == '1' %}selected{% endif %} value="1">dostępne</option>
+                    <option {% if product_state == '2' %}selected{% endif %} value="2">sprzedane</option>
+                    <option {% if product_state == '3' %}selected{% endif %} value="3">wszystkie</option>
+                </select>
+            </div>
+            <div class="sort">
+                <label for="sort-product">Sortuj wg.</label>
+                <select name="sort-product" id="product-sort">
+                    <option {% if sort_product == "no_sort" %}selected{% endif %} value="no_sort">bez sortowania</option>
+                    <option {% if sort_product == "price_asc" %}selected{% endif %} value="price_asc">cena rosnąco</option>
+                    <option {% if sort_product == "price_desc" %}selected{% endif %} value="price_desc">cena malejąco</option>
+                    <option {% if sort_product == "name_asc" %}selected{% endif %} value="name_asc">nazwa A-Z</option>
+                    <option {% if sort_product == "name_desc" %}selected{% endif %} value="name_desc">nazwa Z-A</option>
+                </select>
+            </div>
+        </div>
+        <div class="catalog-products">
+            {% for item in products %}
+            <div class="catalog-product">
+                <a href="{% url 'product' slug=item.slug %}">
+                    <img src="{{ item.get_thumbnail_image }}" />
+                </a>
+                <div class="catalog-product-desc">
+                    <h3 class="mt-2"><a href="{% url 'product' slug=item.slug %}">{{ item.name }}</a></h3>
+                    <p>{{ item.price }} zł</p>
+                </div>
+                <div class="catalog-product-add">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ item.id }}" class="prod_id">
+                    {% if item.status == 1 %}
+                    <button type="submit" class="catalog-product-button">Do koszyka</button>
+                    {% else %}
+                    <button type="button" class="catalog-product-sold">Sprzedane</button>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="pages">
+            <ul class="pagination">
+                {% if products.has_previous %}
+                    <li class="page-item"><a class="page-link" href="{% url 'catalog' %}?page={{products.previous_page_number}}"><span>&laquo;</span></a></li>
+                {% endif %}
+                {% for i in products_paginator.page_range %}
+                {% if i == products.number%}
+                    <li class="page-item active"><a class="page-link" href="{% url 'catalog' %}?page={{i}}">{{i}}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="{% url 'catalog' %}?page={{i}}">{{i}}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if products.has_next %}
+                    <li class="page-item"><a class="page-link" href="{% url 'catalog' %}?page={{products.next_page_number}}"><span>&raquo;</span></a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'shop/js/catalog.js' %}"></script>
+<script>
+    updatePageLinks();
+</script>
+{% endblock scripts %}

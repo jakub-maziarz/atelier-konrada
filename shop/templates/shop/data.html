@@ -1,0 +1,129 @@
+{% extends 'shop/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container-lg data-container">
+  <div class="order-steps">
+    <div class="order-step">
+      <span>Koszyk</span>
+      <i class="fa-solid fa-basket-shopping"></i>
+    </div>
+    <div class="order-step active">
+      <span>Dane</span>
+      <i class="fa-solid fa-id-card"></i>
+    </div>
+    <div class="order-step">
+      <span>Podsumowanie</span>
+      <i class="fa-solid fa-list-check"></i>
+    </div>
+    <div class="order-step">
+      <span>Potwierdzenie</span>
+      <i class="fa-solid fa-check"></i>
+    </div>
+  </div>
+  <h1>Dane klienta</h1>
+  <div class="order-data">
+    <div class="form-input">
+      <label for="firstname">Imię</label>
+      <input type="text" name="firstname" id="firstname" {% if cartData|get_item:'customer_firstname' %}value="{{cartData|get_item:'customer_firstname'}}"{% endif %} autofocus>
+    </div>
+    <div class="form-input">
+      <label for="lastname">Nazwisko</label>
+      <input type="text" name="lastname" id="lastname" {% if cartData|get_item:'customer_lastname' %}value="{{cartData|get_item:'customer_lastname'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="phone">Numer telefonu</label>
+      <input type="text" name="phone" id="phone" {% if cartData|get_item:'customer_phone' %}value="{{cartData|get_item:'customer_phone'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="email">Adres e-mail</label>
+      <input type="email" name="email" id="email" {% if cartData|get_item:'customer_email' %}value="{{cartData|get_item:'customer_email'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="zipcode">Kod pocztowy</label>
+      <input type="text" name="zipcode" id="zipcode" {% if cartData|get_item:'to_zip' %}value="{{cartData|get_item:'to_zip'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="city">Miasto</label>
+      <input type="text" name="city" id="city" {% if cartData|get_item:'to_city' %}value="{{cartData|get_item:'to_city'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="street">Ulica</label>
+      <input type="text" name="street" id="street" {% if cartData|get_item:'to_street' %}value="{{cartData|get_item:'to_street'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="housenumber">Numer domu</label>
+      <input type="text" name="housenumber" id="housenumber" {% if cartData|get_item:'to_house_number' %}value="{{cartData|get_item:'to_house_number'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="address">Adres</label>
+      <textarea name="address" id="address" rows="4" placeholder="Dodatkowe informacje"></textarea>
+    </div>
+  </div>
+  <label for="data-a" class="alternative-address">
+    Dostawa pod inny adres <input type="checkbox" name="data-a" id="data-a" {% if cartData|get_item:'customer_firstname_other' %}checked{% endif %}>
+    <span class="checkmark"></span>
+  </label>
+  <div class="order-data-alternative">
+    <div class="form-input">
+      <label for="firstname-a">Imię</label>
+      <input type="text" name="firstname-a" id="firstname-a" {% if cartData|get_item:'customer_firstname_other' %}value="{{cartData|get_item:'customer_firstname_other'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="lastname-a">Nazwisko</label>
+      <input type="text" name="lastname-a" id="lastname-a" {% if cartData|get_item:'customer_lastname_other' %}value="{{cartData|get_item:'customer_lastname_other'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="phone-a">Numer telefonu</label>
+      <input type="text" name="phone-a" id="phone-a" {% if cartData|get_item:'customer_phone_other' %}value="{{cartData|get_item:'customer_phone_other'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="email-a">Adres e-mail</label>
+      <input type="email" name="email-a" id="email-a" {% if cartData|get_item:'customer_email_other' %}value="{{cartData|get_item:'customer_email_other'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="zipcode-a">Kod pocztowy</label>
+      <input type="text" name="zipcode-a" id="zipcode-a" {% if cartData|get_item:'to_zip_other' %}value="{{cartData|get_item:'to_zip_other'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="city-a">Miasto</label>
+      <input type="text" name="city-a" id="city-a" {% if cartData|get_item:'to_city_other' %}value="{{cartData|get_item:'to_city_other'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="street-a">Ulica</label>
+      <input type="text" name="street-a" id="street-a" {% if cartData|get_item:'to_street_other' %}value="{{cartData|get_item:'to_street_other'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="housenumber-a">Numer domu</label>
+      <input type="text" name="housenumber-a" id="housenumber-a" {% if cartData|get_item:'to_house_number_other' %}value="{{cartData|get_item:'to_house_number_other'}}"{% endif %}>
+    </div>
+    <div class="form-input">
+      <label for="address-a">Adres</label>
+      <textarea name="address-a" id="address-a" rows="4" placeholder="Dodatkowe informacje"></textarea>
+    </div>
+  </div>
+  <h2 class="payment-header">Płatność</h2>
+  <div class="payment-option">
+    <i class="fa-solid fa-building-columns fa-xl"></i>
+    <span class="payment-desc">Przelew bankowy</span>
+  </div>
+  <div class="order-navigation">
+    <a href="{% url 'cart' %}" class="py-2 px-3 previous">Wstecz</a>
+    {% csrf_token %}
+    <button type="submit" class="py-2 px-3 next">Dalej</button>
+  </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'shop/js/cart-data.js' %}"></script>
+<script>
+  var textareaAddress = document.getElementById("address");
+  {% if cartData|get_item:'address' %}
+  textareaAddress.value = "{{cartData|get_item:'address'}}";
+  {% endif %}
+
+  var textareaAlternativeAddress = document.getElementById("address-a");
+  {% if cartData|get_item:'address_other' %}
+  textareaAlternativeAddress.value = "{{cartData|get_item:'address_other'}}";
+  {% endif %}
+</script>
+{% endblock scripts %}

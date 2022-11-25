@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Konrada - Stan zamówienia</title>
+    {% comment %} ----- Bootstrap CSS ----- {% endcomment %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    {% comment %} ----- Font Awesome ----- {% endcomment %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    {% comment %} ----- Google Fonts ----- {% endcomment %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Radley&family=Roboto&family=Zilla+Slab&display=swap"
+        rel="stylesheet" />
+    {% comment %} ----- Status CSS ----- {% endcomment %}
+    <link rel="stylesheet" href="{% static 'shop/css/status.css' %}" />
+</head>
+
+<body>
+    <div class="container-lg status-container">
+        <div class="header py-3">
+            <a href="{% url 'home' %}" class="trademark fs-5 mb-3"><span class="logo-color">Atelier </span><span class="fw-bold">
+                    Konrada</span></a>
+            <h1 class="fs-3 fw-bold">Podsumowanie zamówienia: <span class="order-number">{{order.order_number}}</span>
+            </h1>
+        </div>
+        <div class="order-steps">
+            <div class="order-step {% if order.status == 'ordered' %}active{% endif %}">
+                <span>Złożone</span>
+                <i class="fa-solid fa-basket-shopping"></i>
+            </div>
+            <div class="order-step {% if order.status == 'paid' %}active{% endif %}">
+                <span>Opłacone</span>
+                <i class="fa-solid fa-money-bill"></i>
+            </div>
+            <div class="order-step {% if order.status == 'shipped' %}active{% endif %}">
+                <span>Wysłane</span>
+                <i class="fa-solid fa-truck"></i>
+            </div>
+            <div class="order-step {% if order.status == 'finished' %}active{% endif %}">
+                <span>Zakończone</span>
+                <i class="fa-solid fa-check"></i>
+            </div>
+        </div>
+        {% for order_product in order_products %}
+        <div class="order-product">
+            <img src="{{ order_product.product.get_thumbnail_image }}" class="product-image" />
+            <a href="{% url 'product' slug=order_product.product.slug %}">{{ order_product.product.name }}</a>
+            <p class="qty">{{order_product.quantity}}</p>
+            <p class="price">{{order_products_prices|get_item:order_product.product.name}} zł</p>
+        </div>
+        {% endfor %}
+        <p class="total"><span class="total-text">Razem</span><span class="total-price">{{total_order_price}} zł</span>
+        </p>
+        <div class="order-status-info">
+            <h2 class="data-header">Dane klienta i adres wysyłki</h2>
+            <div class="order-data-final">
+                <div class="client-info">
+                    <p>
+                        <span class="caption">
+                            Imię i nazwisko
+                        </span>
+                        <span class="info">
+                            {{order.customer_name}}
+                        </span>
+                    </p>
+                    <p>
+                        <span class="caption">
+                            Numer telefonu
+                        </span>
+                        <span class="info">
+                            {{order.customer_phone}}
+                        </span>
+                    </p>
+                    <p>
+                        <span class="caption">
+                            Adres e-mail
+                        </span>
+                        <span class="info">
+                            {{order.customer_email}}
+                        </span>
+                    </p>
+                </div>
+                <div class="shipping-address">
+                    <p>
+                        <span class="caption">
+                            Adres wysyłki
+                        </span>
+                        <span class="info">
+                            {{order.to_zip}} {{order.to_city}}
+                        </span>
+                        <span class="info">
+                            ul. {{order.to_street}} {{order.to_house_number}}
+                        </span>
+                        <span class="info">
+                            {% if order.address %}
+                            {{order.address}}
+                            {% endif %}
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="payment-order-status">
+                <h2 class="payment-header">Płatność</h2>
+                <div class="payment-option">
+                    <i class="fa-solid fa-building-columns fa-xl"></i>
+                    <span class="payment-desc">Przelew bankowy</span>
+                </div>
+                <h2 class="status-header">Status</h2>
+                <div class="current-status">
+                    {% if order.status == 'ordered' %}
+                    <i class="fa-solid fa-basket-shopping fa-xl"></i>
+                    <span class="status-desc">Złożone</span>
+                    {% elif order.status == 'paid' %}
+                    <i class="fa-solid fa-money-bill fa-xl"></i>
+                    <span class="status-desc">Opłacone</span>
+                    {% elif order.status == 'shipped' %}
+                    <i class="fa-solid fa-truck fa-xl"></i>
+                    <span class="status-desc">Wysłane</span>
+                    {% elif order.status == 'finished' %}
+                    <i class="fa-solid fa-check fa-xl"></i>
+                    <span class="status-desc">Zakończone</span {% endif %} </div>
+                </div>
+                {% if order.customer_name_other %}
+                <h2 class="data-header-alternative">Dostawa pod inny adres</h2>
+                <div class="order-data-final-alternative">
+                    <div class="client-info">
+                        <p>
+                            <span class="caption">
+                                Imię i nazwisko
+                            </span>
+                            <span class="info">
+                                {{order.customer_name_other}}
+                            </span>
+                        </p>
+                        <p>
+                            <span class="caption">
+                                Numer telefonu
+                            </span>
+                            <span class="info">
+                                {{order.customer_phone_other}}
+                            </span>
+                        </p>
+                        <p>
+                            <span class="caption">
+                                Adres e-mail
+                            </span>
+                            <span class="info">
+                                {{order.customer_email_other}}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="shipping-address">
+                        <p>
+                            <span class="caption">
+                                Adres wysyłki
+                            </span>
+                            <span class="info">
+                                {{order.to_zip_other}} {{order.to_city_other}}
+                            </span>
+                            <span class="info">
+                                ul. {{order.to_street_other}} {{order.to_house_number_other}}
+                            </span>
+                            <span class="info">
+                                {% if order.address_other %}
+                                {{order.address_other}}
+                                {% endif %}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+                <h2 class="transfer-header">Dane do przelewu</h2>
+                <div class="transfer-info">
+                    <div class="client-info">
+                        <p>
+                            <span class="info">
+                                Atelier Konrada
+                            </span>
+                        </p>
+                        <p>
+                            <span class="info bank-account">
+                                PL 75 1670 5865 7693 2792 1899 5639
+                            </span>
+                        </p>
+                        <p>
+                            <span class="info">
+                                W tytule numer zamówienia
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                {% if order.status == 'ordered' %}
+                <h2 class="cancel-header">Anuluj zamówienie</h2>
+                {% csrf_token %}
+                <button type="submit" class="cancel-option">Anuluj</button>
+                {% endif %}
+            </div>
+        </div>
+        {% comment %} ----- jQuery JS ----- {% endcomment %}
+        <script src="{% static 'shop/js/jquery-3.6.0.min.js' %}"></script>
+        {% comment %} ----- Bootstrap JS ----- {% endcomment %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+        <script>
+            $('.cancel-option').click(function (e) {
+                e.preventDefault();
+
+                var token = $(this).closest('.order-status-info').find('input[name=csrfmiddlewaretoken').val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/cancel-order",
+                    data: {
+                        'order_number': "{{order.order_number}}",
+                        csrfmiddlewaretoken: token
+                    },
+                    success: function (response) {
+                        window.location.href = response.url;
+                    }
+                });
+            });
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+{% extends 'shop/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container-lg contact-container">
+  <div class="contact-data">
+    <h1 class="fs-3">Zostaw wiadomość</h1>
+    <div class="contact-form">
+      <div class="form-input">
+        <label for="email">Adres e-mail</label>
+        <input type="email" name="email" id="email" class="email" />
+      </div>
+      <div class="form-input">
+        <label for="topic">Temat</label>
+        <input type="text" name="topic" id="topic" class="topic" />
+      </div>
+      <div class="form-input">
+        <label for="message">Treść wiadomości</label>
+        <textarea name="message" id="address" rows="4" class="message"></textarea>
+      </div>
+      {% csrf_token %}
+      <button type="submit" class="py-2 px-3 message-btn">Wyślij</button>
+    </div>
+  </div>
+  <img src="{% static 'shop/images/wystawa-2.jpg' %}" />
+</div>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'shop/js/contact.js' %}"></script>
+{% endblock scripts %}

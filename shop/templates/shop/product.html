@@ -1,0 +1,107 @@
+{% extends 'shop/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container-lg product-container">
+  <div class="product-category">
+    <ul class="category-nav">
+      <li><a href="{% url 'catalog' %}">Katalog</a></li>
+      {% for category in categories %}
+      <a href="{% url 'catalog' category.slug %}">
+        <li>/ {{ category.name }} </li>
+      </a>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="product-images">
+    <div class="swiper productSwiper">
+      <div class="swiper-wrapper">
+        {% for image in images %}
+        <div class="swiper-slide"><img src="{{ image.image_path.url }}" /></div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <div thumbsSlider="" class="swiper productSwiperThumbs">
+      <div class="swiper-wrapper">
+        {% for image in images %}
+        <div class="swiper-slide"><img src="{{ image.image_path.url }}" /></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="product-content">
+    <h1 class="fw-bold">{{ product.name }}</h1>
+    <div class="product-quantity">
+      <label for="productquantity">Ilość</label>
+      {% if product.status == 1 %}
+      <div class="product-qty-buttons">
+        <button type="button" id="qtyminus" onclick="decrementQuantity();">-</button>
+        <input type="text" name="productquantity" id="quantityproduct" class="productquantity" value="1">
+        <button type="button" id="qtyplus" onclick="incrementQuantity({{product.quantity}});">+</button>
+      </div>
+      {% endif %}
+      <p class="quantity-left">
+        {% if product.status == 1 %}
+        &#40;{% if product.quantity > 0 %}Pozostało {{product.quantity}}{% else %}Na Zamówienie{% endif %}&#41;
+        {% else %}
+        &#40;Sprzedane&#41;
+        {% endif %}
+      </p>
+    </div>
+    <div class="add-price">
+      <p>{{ product.price }} zł</p>
+      <div class="add-to-cart">
+        {% csrf_token %}
+        <input type="hidden" value="{{ product.id }}" class="prod_id">
+        {% if product.status == 1 %}
+        <button type="submit" class="product-button">Do koszyka</button>
+        {% else %}
+        <button type="button" class="product-button-sold">Sprzedane</button>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+  <div class="additional-info">
+    <div class="description">
+      <h2>Opis produktu</h2>
+      <p>{{ product.description }}</p>
+    </div>
+    <div class="delivery">
+      <h2>Dostawa</h2>
+      <p>Koszt dostawy wliczony jest w cenę produktu</p>
+    </div>
+  </div>
+  <div class="recommended-header d-flex align-items-center justify-content-center">
+    <div class="hr-div flex-grow-1">
+      <hr class="dark-hr" />
+    </div>
+    <h2 class="text-center fs-4 px-2">Inne Produkty z Tej Kategorii</h2>
+    <div class="hr-div flex-grow-1">
+      <hr class="dark-hr" />
+    </div>
+  </div>
+  <div class="recommended-div">
+    <div id="swiper-button-prev-recommended" class="swiper-button-prev"></div>
+    <div class="swiper recommendedSwiper">
+      <div class="swiper-wrapper">
+        {% for item in similar_products %}
+        <div class="recommended-product swiper-slide">
+          <a href="{% url 'product' slug=item.slug %}">
+            <img src="{{ item.get_thumbnail_image }}" class="d-block" />
+          </a>
+          <div class="product-desc">
+            <h5 class="mt-2"><a href="{% url 'product' slug=item.slug %}">{{ item.name }}</a></h5>
+            <p>{{ item.price }} zł</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="swiper-button-next-recommended" class="swiper-button-next"></div>
+  </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'shop/js/product.js' %}"></script>
+{% endblock scripts %}

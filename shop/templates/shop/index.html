@@ -1,0 +1,18 @@
+{% extends 'shop/main.html' %} 
+{% load static %} 
+{% block title %} Atelier Konrada {% endblock title %} 
+{% block content %} 
+{% comment %} ----- Banner ----- {% endcomment %} 
+{% include 'shop/inc/index/banner.html' %} 
+{% comment %} ----- Main Categories ----- {% endcomment %} 
+{% include 'shop/inc/index/categories.html' %} 
+{% comment %} ----- Gallery ----- {% endcomment %} 
+{% include 'shop/inc/index/gallery.html' %}
+{% comment %} ----- Recommended Products ----- {% endcomment %} 
+{% include 'shop/inc/index/recommended.html' %} 
+{% comment %} ----- Newsletter ----- {% endcomment %} 
+{% include 'shop/inc/index/newsletter.html' %} 
+{% endblock content%} 
+{% block scripts %} 
+<script src="{% static 'shop/js/newsletter.js' %}"></script>
+{% endblock scripts %}

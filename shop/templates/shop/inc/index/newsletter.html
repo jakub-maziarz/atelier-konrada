@@ -1,0 +1,20 @@
+<div class="newsletter">
+  <div class="newsletter-content">
+    <div class="newsletter-div py-5 px-3">
+      <div class="newsletter-header d-flex flex-column align-items-center justify-content-center">
+        <h2 class="text-center fw-bold fs-2 px-2">Newsletter</h2>
+        <hr class="green-hr" />
+        <p class="text-center mt-1">Podaj swój adres e-mail, jeżeli chcesz otrzymywać informacje o nowych produktach</p>
+      </div>
+      <div class="newsletter-email">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="newsletter-input d-flex">
+            <input type="email" required class="email-input flex-grow-1 py-2 px-2" name="emailnewsletter" id="newsletteremail" placeholder="Wpisz adres e-mail" />
+            <button type="submit" class="newsletter-btn py-2 px-2">Zapisz się</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

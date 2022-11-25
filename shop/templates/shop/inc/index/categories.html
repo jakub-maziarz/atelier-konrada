@@ -1,0 +1,43 @@
+{% load static %}
+<div class="container-lg categories-container">
+  <div class="slogan">
+    <div class="slogan-text d-flex flex-row align-items-center justify-content-center">
+      <div class="hr-div flex-grow-1">
+        <hr class="dark-hr" />
+      </div>
+      <h1 class="fs-4 text-center px-2">Atelier Konrada - Miejsce, w którym drewno ożywa</h1>
+      <div class="hr-div flex-grow-1">
+        <hr class="dark-hr" />
+      </div>
+    </div>
+    <p class="promote-text text-center">Jedyne w swoim rodzaju rękodzieła sprawiają, że wnętrze nabiera charakteru.<br />Zapraszam do zapoznania się z ofertą sklepu.</p>
+  </div>
+  <div class="promo-categories">
+    <div class="pr-cat">
+      <div class="pr-cat-content">
+        <a href="{% url 'catalog' slug='lampiony' %}" class="category-link">
+          <img src="{% static 'shop/images/lampiony-category.jpg' %}" alt="lampiony" />
+        </a>
+        <a href="{% url 'catalog' slug='lampiony' %}" class="pr-cat-p">Lampiony</a>
+      </div>
+    </div>
+
+    <div class="pr-cat">
+      <div class="pr-cat-content">
+        <a href="{% url 'catalog' slug='obrazy' %}" class="category-link">
+          <img src="{% static 'shop/images/obrazy-category.jpg' %}" alt="obrazy" />
+        </a>
+        <a href="{% url 'catalog' slug='obrazy' %}" class="pr-cat-p">Obrazy</a>
+      </div>
+    </div>
+
+    <div class="pr-cat">
+      <div class="pr-cat-content">
+        <a href="{% url 'catalog' slug='ozdoby' %}" class="category-link">
+          <img src="{% static 'shop/images/ozdoby-category.jpg' %}" alt="ozdoby" />
+        </a>
+        <a href="{% url 'catalog' slug='ozdoby' %}" class="pr-cat-p">Ozdoby</a>
+      </div>
+    </div>
+  </div>
+</div>

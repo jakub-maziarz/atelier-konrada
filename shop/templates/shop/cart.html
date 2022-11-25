@@ -1,0 +1,54 @@
+{% extends 'shop/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container-lg cart-container">
+  <div class="order-steps">
+    <div class="order-step active">
+      <span>Koszyk</span>
+      <i class="fa-solid fa-basket-shopping"></i>
+    </div>
+    <div class="order-step">
+      <span>Dane</span>
+      <i class="fa-solid fa-id-card"></i>
+    </div>
+    <div class="order-step">
+      <span>Podsumowanie</span>
+      <i class="fa-solid fa-list-check"></i>
+    </div>
+    <div class="order-step">
+      <span>Potwierdzenie</span>
+      <i class="fa-solid fa-check"></i>
+    </div>
+  </div>
+  {% for cart_product in cart_products %}
+  <div class="order-product">
+    <img src="{{ cart_product.product.get_thumbnail_image }}" class="product-image" />
+    <a href="#">{{ cart_product.product.name }}</a>
+    {% csrf_token %}
+    <input type="hidden" value="{{ cart_product.id }}" class="cart_prod_id" />
+    <div class="qty-price">
+      <div class="product-qty-buttons">
+        <button type="button" id="qtyminus" class="minusQty">-</button>
+        <input type="text" name="productquantity" id="quantityproduct" value="{{cart_product.quantity}}" class="productquantity" readonly="readonly" />
+        <button type="button" id="qtyplus" class="plusQty">+</button>
+      </div>
+      <p class="price">{{cart_products_prices|get_item:cart_product.product.name}} zł</p>
+    </div>
+    <button type="button" class="product-delete">
+      <i class="fa-solid fa-trash fa-lg"></i>
+    </button>
+  </div>
+  {% endfor %}
+  {% if total_cart_price > 0 %}
+  <p class="total"><span class="total-text">Razem</span><span class="total-price">{{total_cart_price}} zł</span></p>
+  <div class="order-navigation">
+    <a href="{% url 'data' %}" class="py-2 px-3 next">Dalej</a>
+  </div>
+  {% else %}
+  <p class="empty-cart">Twój koszyk jest pusty</p>
+  {% endif %}
+</div>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'shop/js/cart.js' %}"></script>
+{% endblock scripts %}

@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %} {% endblock title %}</title>
+  {% comment %} ----- Bootstrap CSS ----- {% endcomment %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  {% comment %} ----- Font Awesome ----- {% endcomment %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" />
+  {% comment %} ----- Swiper CSS ----- {% endcomment %}
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+  {% comment %} ----- Google Fonts ----- {% endcomment %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Radley&family=Roboto&family=Zilla+Slab&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet" />
+  {% comment %} ----- iziToast CSS ----- {% endcomment %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css"
+    integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  {% comment %} ----- jQuery UI - Autocomplete CSS ----- {% endcomment %}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css" />
+  {% comment %} ----- Custom CSS ----- {% endcomment %}
+  <link rel="stylesheet" href="{% static 'shop/css/custom.css' %}" />
+  <script>
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== "") {
+        var cookies = document.cookie.split(";");
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === name + "=") {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+    function uuidv4() {
+      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+        var r = (Math.random() * 16) | 0,
+          v = c == "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      });
+    }
+
+    let client = getCookie("client");
+
+    if (client == null || client == undefined) {
+      client = uuidv4();
+    }
+
+    document.cookie = "client=" + client + ";domain=;path=/";
+  </script>
+</head>
+
+<body>
+  {% comment %} ----- Navbar ----- {% endcomment %}
+  {% include 'shop/inc/navbar.html' %}
+
+  {% block content %}
+
+  {% endblock content%}
+
+  {% comment %} ----- Footer ----- {% endcomment %}
+  {% include 'shop/inc/footer.html' %} 
+  
+  {% comment %} -----jQuery JS ----- {% endcomment %}
+  <script src="{% static 'shop/js/jquery-3.6.0.min.js' %}"></script>
+
+  {% comment %} ----- Swiper JS ----- {% endcomment %}
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+  {% comment %} ----- Bootstrap JS ----- {% endcomment %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  {% comment %} ----- iziToast JS ----- {% endcomment %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"
+    integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  {% comment %} jQuery JS UI {% endcomment %}
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+  {% comment %} jQuery UI Autocompletion {% endcomment %}
+  <script>
+    $.ajax({
+      method: "GET",
+      url: "/available-products",
+      success: function (response) {
+        $("#searchproducts").autocomplete({
+          source: response
+        });
+      }
+    });
+
+    {% for msg in messages %}
+    iziToast.show({
+      class: 'alert',
+      message: '{{msg}}',
+      messageColor: '#fff',
+      backgroundColor: '#ff0000',
+      position: 'topRight'
+    });
+    {% endfor %}
+  </script>
+
+  {% block scripts %}
+  {% endblock scripts %}
+
+  <script src="{% static 'shop/js/navbar.js' %}"></script>
+  <script src="{% static 'shop/js/swiper-sliders.js' %}"></script>
+</body>
+
+</html>

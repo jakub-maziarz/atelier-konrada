@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atelier Konrada - Newsletter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Radley&family=Roboto&family=Zilla+Slab&display=swap" rel="stylesheet" />
+  </head>
+  <body style="margin: 0; background-color: #ffffff">
+    <center style="width: 100%; table-layout: fixed; background-color: #ffffff; padding-bottom: 60px">
+      <table width="100%" style="border-spacing: 0; background-color: #3d431a; margin: 0 auto; width: 100%; max-width: 600px; font-family: Radley, serif; color: #ffffff">
+        <tr>
+          <td height="8" style="padding: 0; background-color: #3a291e"></td>
+        </tr>
+        <tr>
+          <td style="padding: 0">
+            <table width="100%" style="border-spacing: 0">
+              <tr>
+                <td style="padding: 20px">
+                  <a href="{% if debug_flag %} http://127.0.0.1:8000/ {% else %} https://atelier-konrada.up.railway.app/ {% endif %}" style="color: #ffffff; text-decoration: none; font-weight: bold; font-size: 20px; font-family: Zilla Slab, serif">
+                    <span style="color: #727d31">Atelier </span>Konrada
+                  </a>
+                  <p style="font-size: 16px; margin: 0; margin-top: 25px; color: #ffffff">{{ newsletter_message }}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td height="2 " style="padding: 0; background-color: #3a291e"></td>
+        </tr>
+        <tr>
+          <td style="padding: 30px 20px 20px 20px">
+            <table width="100%" style="border-spacing: 0">
+              <tr>
+                <td style="padding: 0">
+                  {% for item in recommended_products %}
+                  <table width="100%" style="border-spacing: 0; width: 100%; max-width: 170px; display: inline-block; vertical-align: top">
+                    <tr>
+                      <td style="padding: 0; text-align: center">
+                        <a {% if debug_flag %} href="http://127.0.0.1:8000{% url 'product' slug=item.slug %}" {% else %} href="https://atelier-konrada.up.railway.app{% url 'product' slug=item.slug %}" {% endif %}>
+                          <img src="{% if debug_flag %} https://via.placeholder.com/150/3A291E {% else %} {{ item.get_thumbnail_image }}{% endif %}" alt="" width="150" height="150" style="max-width: 150px; border: 0" />
+                        </a>
+                        <p style="font-size: 16px; margin: 10px 0; max-width: 150px">
+                          <a {% if debug_flag %} href="http://127.0.0.1:8000{% url 'product' slug=item.slug %}" {% else %} href="https://atelier-konrada.up.railway.app{% url 'product' slug=item.slug %}" {% endif %} style="color: #ffffff; text-decoration: none; font-size: 16px; font-family: Radley, serif">{{ item.name }}</a>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                  {% endfor %}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td height="2 " style="padding: 0; background-color: #3a291e"></td>
+        </tr>
+        <tr>
+          <td style="padding: 0; background-color: #727d31">
+            <table width="100%" style="border-spacing: 0">
+              <tr>
+                <td style="padding: 20px">
+                  <p style="font-size: 14px; margin: 0; margin-bottom: 10px; color: #ffffff">Otrzymujesz wiadomości e-mail, ponieważ zapisałeś/aś się na newsletter</p>
+                  <a {% if debug_flag %} href="http://127.0.0.1:8000{% url 'cancel-newsletter' email=customer_email %}" {% else %} href="https://atelier-konrada.up.railway.app{% url 'cancel-newsletter' email=customer_email %}" {% endif %} style="font-size: 14px; color: #ffffff">Anuluj subskrypcję</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td height="8" style="padding: 0; background-color: #3a291e"></td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>

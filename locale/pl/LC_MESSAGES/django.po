@@ -1,0 +1,268 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-24 16:50+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: .\atelier\settings.py:128
+msgid "Polish"
+msgstr "Polski"
+
+#: .\shop\admin.py:32
+msgid "Change Status"
+msgstr "Zmień status"
+
+#: .\shop\apps.py:9
+msgid "Shop"
+msgstr "Sklep"
+
+#: .\shop\models.py:10 .\shop\models.py:42
+msgid "name"
+msgstr "Nazwa"
+
+#: .\shop\models.py:14
+msgid "Category"
+msgstr "Kategoria"
+
+#: .\shop\models.py:15
+msgid "Categories"
+msgstr "Kategorie"
+
+#: .\shop\models.py:44
+msgid "price"
+msgstr "Cena"
+
+#: .\shop\models.py:45
+msgid "description"
+msgstr "Opis"
+
+#: .\shop\models.py:46 .\shop\models.py:170 .\shop\models.py:227
+msgid "quantity"
+msgstr "Ilość"
+
+#: .\shop\models.py:48
+msgid "recommended"
+msgstr "Polecane"
+
+#: .\shop\models.py:50 .\shop\models.py:156
+msgid "status"
+msgstr "Status"
+
+#: .\shop\models.py:53
+msgid "Product"
+msgstr "Produkt"
+
+#: .\shop\models.py:54
+msgid "Products"
+msgstr "Produkty"
+
+#: .\shop\models.py:90
+msgid "CategoryProduct"
+msgstr "Kategoria produktu"
+
+#: .\shop\models.py:91
+msgid "CategoryProducts"
+msgstr "Kategorie produktu"
+
+#: .\shop\models.py:100
+msgid "image_path"
+msgstr "Obraz"
+
+#: .\shop\models.py:103
+msgid "Image"
+msgstr "Zdjęcie"
+
+#: .\shop\models.py:104
+msgid "Images"
+msgstr "Zdjęcia"
+
+#: .\shop\models.py:116
+msgid "ordered"
+msgstr "złożone"
+
+#: .\shop\models.py:117
+msgid "paid"
+msgstr "opłacone"
+
+#: .\shop\models.py:118
+msgid "shipped"
+msgstr "wysłane"
+
+#: .\shop\models.py:119
+msgid "finished"
+msgstr "zakończone"
+
+#: .\shop\models.py:124 .\shop\models.py:184
+msgid "customer name"
+msgstr "Imię i nazwisko"
+
+#: .\shop\models.py:125 .\shop\models.py:186
+msgid "customer phone"
+msgstr "Telefon"
+
+#: .\shop\models.py:126 .\shop\models.py:188 .\shop\models.py:238
+msgid "customer email"
+msgstr "Email"
+
+#: .\shop\models.py:127 .\shop\models.py:190
+msgid "zip code"
+msgstr "Kod pocztowy"
+
+#: .\shop\models.py:128 .\shop\models.py:192
+msgid "city"
+msgstr "Miasto"
+
+#: .\shop\models.py:129 .\shop\models.py:194
+msgid "street"
+msgstr "Ulica"
+
+#: .\shop\models.py:131 .\shop\models.py:196
+msgid "house number"
+msgstr "Numer domu"
+
+#: .\shop\models.py:132 .\shop\models.py:197
+msgid "address"
+msgstr "Adres"
+
+#: .\shop\models.py:135
+msgid "transaction id"
+msgstr "Identyfikator transakcji"
+
+#: .\shop\models.py:136 .\shop\models.py:181
+msgid "client id"
+msgstr "Identyfikator klienta"
+
+#: .\shop\models.py:138
+msgid "order_number"
+msgstr "Numer zamówienia"
+
+#: .\shop\models.py:140 .\shop\models.py:199
+msgid "other customer name"
+msgstr "Alternatywne imię i nazwisko"
+
+#: .\shop\models.py:142 .\shop\models.py:201
+msgid "other customer phone"
+msgstr "Alternatywny telefon"
+
+#: .\shop\models.py:144 .\shop\models.py:203
+msgid "other customer email"
+msgstr "Alternatywny email"
+
+#: .\shop\models.py:146 .\shop\models.py:205
+msgid "other zip code"
+msgstr "Alternatywny kod pocztowy"
+
+#: .\shop\models.py:148 .\shop\models.py:207
+msgid "other city"
+msgstr "Alternatywne miasto"
+
+#: .\shop\models.py:150 .\shop\models.py:209
+msgid "other street"
+msgstr "Alternatywna ulica"
+
+#: .\shop\models.py:152 .\shop\models.py:211
+msgid "other house number"
+msgstr "Alternatywny numer domu"
+
+#: .\shop\models.py:153 .\shop\models.py:212
+msgid "other address"
+msgstr "Alternatywny adres"
+
+#: .\shop\models.py:154 .\shop\models.py:213
+msgid "created at"
+msgstr "Utworzone"
+
+#: .\shop\models.py:155 .\shop\models.py:214
+msgid "updated at"
+msgstr "Zaktualizowane"
+
+#: .\shop\models.py:160
+msgid "Order"
+msgstr "Zamówienie"
+
+#: .\shop\models.py:161
+msgid "Orders"
+msgstr "Zamówienia"
+
+#: .\shop\models.py:173
+msgid "OrderProduct"
+msgstr "Produkt z zamówienia"
+
+#: .\shop\models.py:174
+msgid "OrderProducts"
+msgstr "Produkty z zamówienia"
+
+#: .\shop\models.py:217
+msgid "Cart"
+msgstr "Koszyk"
+
+#: .\shop\models.py:218
+msgid "Carts"
+msgstr "Koszyki"
+
+#: .\shop\models.py:230
+msgid "CartProduct"
+msgstr "Produkt z koszyka"
+
+#: .\shop\models.py:231
+msgid "CartProducts"
+msgstr "Produkty z koszyka"
+
+#: .\shop\models.py:241
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: .\shop\models.py:242
+msgid "Newsletters"
+msgstr "Newslettery"
+
+#: .\shop\urls.py:7 .\shop\urls.py:8
+msgid "catalog"
+msgstr "katalog"
+
+#: .\shop\urls.py:9
+msgid "product"
+msgstr "produkt"
+
+#: .\shop\urls.py:10
+msgid "cart"
+msgstr "koszyk"
+
+#: .\shop\urls.py:11
+msgid "cart/data"
+msgstr "koszyk/dane"
+
+#: .\shop\urls.py:12
+msgid "cart/checkout"
+msgstr "koszyk/podsumowanie"
+
+#: .\shop\urls.py:13
+msgid "cart/confirmation"
+msgstr "koszyk/potwierdzenie"
+
+#: .\shop\urls.py:14
+msgid "about"
+msgstr "o-mnie"
+
+#: .\shop\urls.py:15
+msgid "contact"
+msgstr "kontakt"
+
+#~ msgid "country"
+#~ msgstr "kraj"

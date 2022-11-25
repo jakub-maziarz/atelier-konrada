@@ -1,0 +1,41 @@
+<nav>
+  <div class="container-lg navbar d-flex justify-content-between align-items-center py-3">
+    <a href="{% url 'home' %}" class="brand fs-5"><span class="logo-color">Atelier </span><span class="fw-bold"> Konrada</span></a>
+    <div class="menu d-flex justify-content-center align-items-center">
+      <div class="nav-btn p-4">
+        <i class="fa-solid fa-xmark fa-xl close-btn"></i>
+      </div>
+      <ul class="fs-5">
+        <li class="{% if request.resolver_match.url_name == 'home' %}active-link{% endif %}"><a href="{% url 'home' %}">Strona Główna</a></li>
+        <li class="{% if request.resolver_match.url_name == 'catalog' %}active-link{% endif %}"><a href="{% url 'catalog' %}">Sklep</a></li>
+        <li class="{% if request.resolver_match.url_name == 'about' %}active-link{% endif %}"><a href="{% url 'about' %}">O Mnie</a></li>
+        <li class="{% if request.resolver_match.url_name == 'contact' %}active-link{% endif %}"><a href="{% url 'contact' %}">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="controls d-flex align-items-center justify-content-center">
+      <div class="search-display">
+        <i class="fa fa-search fa-lg search-toggle"></i>
+      </div>
+      <a href="{% url 'cart' %}">
+        <div class="d-flex align-items-center justify-content-center cart-icon">
+          <i class="fa-solid fa-cart-shopping fa-xl"></i>
+          <span class="d-flex align-items-center justify-content-center rounded-circle cart-total fw-bold">{% if cart_quantity %}{{cart_quantity}}{% else %}0{% endif %}</span>
+        </div>
+      </a>
+      <div class="nav-btn hamburger py-1 px-2">
+        <i class="fa-solid fa-bars fa-xl menu-btn"></i>
+      </div>
+    </div>
+    <div class="search">
+      <form action="{% url 'search-product' %}" method="POST" id="search-form">
+        {% csrf_token %}
+        <div class="search-input d-flex">
+          <input type="text" required class="product-input flex-grow-1 py-1" name="productsearch" id="searchproducts" placeholder="Czego szukasz?" />
+          <span class="clear"><i class="fa-solid fa-circle-xmark"></i></span>
+          <button type="submit" class="product-btn btn-product py-1"><i class="fa fa-search fa-lg"></i></button>
+          <button type="button" class="product-btn btn-product-inline py-1"><i class="fa fa-search fa-lg"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
