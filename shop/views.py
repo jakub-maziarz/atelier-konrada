@@ -8,7 +8,6 @@ from django.utils.translation import gettext_lazy as _
 from .tasks import send_greetings, send_order_details, send_message
 from django.core.paginator import Paginator
 from django.template.defaulttags import register
-from django.contrib import messages
 import json
 
 
