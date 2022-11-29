@@ -95,7 +95,7 @@ celery -A atelier beat -l INFO
 
 ## Usage
 
-![atelier-konrada-usage](https://user-images.githubusercontent.com/118571317/204363958-66cbe46b-bc1b-43db-8189-a78bf22c9c8e.png)
+![atelier-konrada-usage-view](https://user-images.githubusercontent.com/118571317/204529208-6ea23714-8163-40c8-8008-727762e52f9e.png)
 
 ## Contact
 
