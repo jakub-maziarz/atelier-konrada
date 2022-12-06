@@ -64,6 +64,8 @@ endPrice.addEventListener("input", () => {
 let from_to_price = document.getElementById("filter-button");
 
 from_to_price.addEventListener("click", () => {
+  let url = new URL(window.location.href);
+  let search_params = url.searchParams;
   if (startPrice.value == "" && endPrice.value == "") {
     startPrice.style.border = "2px solid red";
     startPrice.placeholder = "Podaj";
@@ -74,8 +76,6 @@ from_to_price.addEventListener("click", () => {
     startPrice.placeholder = "Od";
     endPrice.style.border = "none";
     endPrice.placeholder = "Do";
-    let url = new URL(window.location.href);
-    let search_params = url.searchParams;
     if (startPrice.value != "") {
       search_params.set("from_price", startPrice.value);
     }
