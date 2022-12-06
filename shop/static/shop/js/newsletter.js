@@ -1,8 +1,8 @@
 $(".newsletter-btn").click(function (e) {
   e.preventDefault();
 
-  var email = $(".email-input").val();
-  var token = $(this).closest(".newsletter-email").find("input[name=csrfmiddlewaretoken").val();
+  let email = $(".email-input").val();
+  let token = $(this).closest(".newsletter-email").find("input[name=csrfmiddlewaretoken").val();
 
   if (email == "") {
     $(".email-input").css("border", "2px solid red");

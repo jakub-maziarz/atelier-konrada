@@ -1,11 +1,11 @@
 $(".message-btn").click(function (e) {
   e.preventDefault();
 
-  var email = $(".email").val();
-  var topic = $(".topic").val();
-  var message = $(".form-input textarea").val();
-  var token = $(this).closest(".contact-form").find("input[name=csrfmiddlewaretoken").val();
-  var completeData = true;
+  let email = $(".email").val();
+  let topic = $(".topic").val();
+  let message = $(".form-input textarea").val();
+  let token = $(this).closest(".contact-form").find("input[name=csrfmiddlewaretoken").val();
+  let completeData = true;
 
   if (email == "") {
     completeData = false;

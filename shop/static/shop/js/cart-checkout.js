@@ -1,6 +1,6 @@
 $(document).on("click", ".place-order", function (e) {
   e.preventDefault();
-  var token = $(this).closest(".order-navigation").find("input[name=csrfmiddlewaretoken").val();
+  let token = $(this).closest(".order-navigation").find("input[name=csrfmiddlewaretoken").val();
   $.ajax({
     type: "POST",
     url: "/place-order",

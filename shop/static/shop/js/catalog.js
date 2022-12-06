@@ -1,7 +1,7 @@
 function updatePageLinks() {
-  var page_links = document.querySelectorAll(".page-link");
-  var url, search_params, current_url, current_search_params;
-  for (var i = 0; i < page_links.length; i++) {
+  let page_links = document.querySelectorAll(".page-link");
+  let url, search_params, current_url, current_search_params;
+  for (let i = 0; i < page_links.length; i++) {
     url = new URL(page_links[i].href);
     search_params = url.searchParams;
     current_url = new URL(window.location.href);
@@ -12,10 +12,10 @@ function updatePageLinks() {
   }
 }
 
-var categories = document.querySelector(".categories-list");
-var categoriesToggler = document.querySelector(".categories-toggle");
-var filterOptions = document.querySelector(".filter-options");
-var filterOptionsToggler = document.querySelector(".filter-toggle");
+let categories = document.querySelector(".categories-list");
+let categoriesToggler = document.querySelector(".categories-toggle");
+let filterOptions = document.querySelector(".filter-options");
+let filterOptionsToggler = document.querySelector(".filter-toggle");
 
 categoriesToggler.addEventListener("click", () => {
   categories.classList.toggle("categories-active");
@@ -45,8 +45,8 @@ filterOptionsToggler.addEventListener("click", () => {
   }, 250);
 });
 
-var startPrice = document.getElementById("startPrice");
-var endPrice = document.getElementById("endPrice");
+let startPrice = document.getElementById("startPrice");
+let endPrice = document.getElementById("endPrice");
 const pattern = /[^0-9]+$/;
 
 startPrice.addEventListener("input", () => {
@@ -61,7 +61,7 @@ endPrice.addEventListener("input", () => {
   }
 });
 
-var from_to_price = document.getElementById("filter-button");
+let from_to_price = document.getElementById("filter-button");
 
 from_to_price.addEventListener("click", () => {
   if (startPrice.value == "" && endPrice.value == "") {
@@ -74,8 +74,8 @@ from_to_price.addEventListener("click", () => {
     startPrice.placeholder = "Od";
     endPrice.style.border = "none";
     endPrice.placeholder = "Do";
-    var url = new URL(window.location.href);
-    var search_params = url.searchParams;
+    let url = new URL(window.location.href);
+    let search_params = url.searchParams;
     if (startPrice.value != "") {
       search_params.set("from_price", startPrice.value);
     }
@@ -93,8 +93,8 @@ from_to_price.addEventListener("click", () => {
 });
 
 function resetFromToPrice() {
-  var url = new URL(window.location.href);
-  var search_params = url.searchParams;
+  let url = new URL(window.location.href);
+  let search_params = url.searchParams;
   if (search_params.has("from_price")) {
     search_params.delete("from_price");
   }
@@ -108,11 +108,11 @@ function resetFromToPrice() {
   window.location = url;
 }
 
-var product_state = document.getElementById("state-product");
+let product_state = document.getElementById("state-product");
 
 product_state.addEventListener("change", () => {
-  var url = new URL(window.location.href);
-  var search_params = url.searchParams;
+  let url = new URL(window.location.href);
+  let search_params = url.searchParams;
   search_params.set("product_state", product_state.value);
   if (search_params.has("page")) {
     search_params.delete("page");
@@ -123,11 +123,11 @@ product_state.addEventListener("change", () => {
   }
 });
 
-var sort_product = document.getElementById("product-sort");
+let sort_product = document.getElementById("product-sort");
 
 sort_product.addEventListener("change", () => {
-  var url = new URL(window.location.href);
-  var search_params = url.searchParams;
+  let url = new URL(window.location.href);
+  let search_params = url.searchParams;
   search_params.set("sort_product", sort_product.value);
   url.search = search_params.toString();
   if (url.toString().includes("?")) {
@@ -138,8 +138,8 @@ sort_product.addEventListener("change", () => {
 $(".catalog-product-button").click(function (e) {
   e.preventDefault();
 
-  var product_id = $(this).closest(".catalog-product-add").find(".prod_id").val();
-  var token = $(this).closest(".catalog-product-add").find("input[name=csrfmiddlewaretoken").val();
+  let product_id = $(this).closest(".catalog-product-add").find(".prod_id").val();
+  let token = $(this).closest(".catalog-product-add").find("input[name=csrfmiddlewaretoken").val();
 
   $.ajax({
     type: "POST",

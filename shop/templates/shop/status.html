@@ -212,7 +212,7 @@
             $('.cancel-option').click(function (e) {
                 e.preventDefault();
 
-                var token = $(this).closest('.order-status-info').find('input[name=csrfmiddlewaretoken').val();
+                let token = $(this).closest('.order-status-info').find('input[name=csrfmiddlewaretoken').val();
 
                 $.ajax({
                     type: "POST",

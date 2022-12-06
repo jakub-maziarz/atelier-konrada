@@ -1,12 +1,12 @@
-var menu = document.querySelector(".menu");
-var menuBtn = document.querySelector(".menu-btn");
-var closeBtn = document.querySelector(".close-btn");
-var search = document.querySelector(".search");
-var searchToggler = document.querySelector(".search-toggle");
-var searchForm = document.getElementById("search-form");
-var searchInput = document.querySelector(".product-input");
-var searchBtn = document.querySelector(".btn-product-inline");
-var clearBtn = document.querySelector(".clear");
+let menu = document.querySelector(".menu");
+let menuBtn = document.querySelector(".menu-btn");
+let closeBtn = document.querySelector(".close-btn");
+let search = document.querySelector(".search");
+let searchToggler = document.querySelector(".search-toggle");
+let searchForm = document.getElementById("search-form");
+let searchInput = document.querySelector(".product-input");
+let searchBtn = document.querySelector(".btn-product-inline");
+let clearBtn = document.querySelector(".clear");
 
 menuBtn.addEventListener("click", () => {
   menu.classList.add("active");

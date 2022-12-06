@@ -1,19 +1,19 @@
-var alternativeCheckbox = document.getElementById("data-a");
-var alternativeAddress = document.querySelector(".order-data-alternative");
+let alternativeCheckbox = document.getElementById("data-a");
+let alternativeAddress = document.querySelector(".order-data-alternative");
 
-var nextButton = document.querySelector(".next");
+let nextButton = document.querySelector(".next");
 
 $(".next").click(function (e) {
   e.preventDefault();
-  var orderData = document.querySelector(".order-data");
-  var orderDataAlternative = document.querySelector(".order-data-alternative");
-  var cartDataInputs = orderData.querySelectorAll(".form-input input");
-  var cartDataAlternativeInputs = orderDataAlternative.querySelectorAll(".form-input input");
-  var token = $(this).closest(".order-navigation").find("input[name=csrfmiddlewaretoken").val();
-  var cartDataJson = {};
-  var cartDataAlternativeJson = {};
-  var completeData = true;
-  var completeAlternativeData = true;
+  let orderData = document.querySelector(".order-data");
+  let orderDataAlternative = document.querySelector(".order-data-alternative");
+  let cartDataInputs = orderData.querySelectorAll(".form-input input");
+  let cartDataAlternativeInputs = orderDataAlternative.querySelectorAll(".form-input input");
+  let token = $(this).closest(".order-navigation").find("input[name=csrfmiddlewaretoken").val();
+  let cartDataJson = {};
+  let cartDataAlternativeJson = {};
+  let completeData = true;
+  let completeAlternativeData = true;
   cartDataInputs.forEach(function (input) {
     if (input.value == "") {
       input.style.border = "2px solid red";
@@ -22,7 +22,7 @@ $(".next").click(function (e) {
     } else {
       input.style.border = "none";
       input.placeholder = "";
-      var inputId = input.id;
+      let inputId = input.id;
       cartDataJson[input.id] = input.value;
     }
   });
@@ -40,7 +40,7 @@ $(".next").click(function (e) {
       } else {
         input.style.border = "none";
         input.placeholder = "";
-        var inputId = input.id;
+        let inputId = input.id;
         cartDataAlternativeJson[input.id] = input.value;
       }
     });

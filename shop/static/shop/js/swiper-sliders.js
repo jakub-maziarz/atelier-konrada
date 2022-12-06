@@ -1,4 +1,4 @@
-var swiperOne = new Swiper(".gallerySwiper", {
+let swiperOne = new Swiper(".gallerySwiper", {
   slidesPerView: "auto",
   spaceBetween: 16,
   pagination: {
@@ -7,7 +7,7 @@ var swiperOne = new Swiper(".gallerySwiper", {
   },
 });
 
-var swiperTwo = new Swiper(".recommendedSwiper", {
+let swiperTwo = new Swiper(".recommendedSwiper", {
   slidesPerView: "auto",
   spaceBetween: 16,
   navigation: {
@@ -20,14 +20,14 @@ var swiperTwo = new Swiper(".recommendedSwiper", {
   watchSlideProgress: true,
 });
 
-var swiperThree = new Swiper(".productSwiperThumbs", {
+let swiperThree = new Swiper(".productSwiperThumbs", {
   spaceBetween: 10,
   slidesPerView: 4,
   freeMode: true,
   watchSlidesProgress: true,
 });
 
-var swiperFour = new Swiper(".productSwiper", {
+let swiperFour = new Swiper(".productSwiper", {
   loop: true,
   pagination: {
     el: ".swiper-pagination",

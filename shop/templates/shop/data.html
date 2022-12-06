@@ -116,12 +116,12 @@
 {% block scripts %}
 <script src="{% static 'shop/js/cart-data.js' %}"></script>
 <script>
-  var textareaAddress = document.getElementById("address");
+  let textareaAddress = document.getElementById("address");
   {% if cartData|get_item:'address' %}
   textareaAddress.value = "{{cartData|get_item:'address'}}";
   {% endif %}
 
-  var textareaAlternativeAddress = document.getElementById("address-a");
+  let textareaAlternativeAddress = document.getElementById("address-a");
   {% if cartData|get_item:'address_other' %}
   textareaAlternativeAddress.value = "{{cartData|get_item:'address_other'}}";
   {% endif %}

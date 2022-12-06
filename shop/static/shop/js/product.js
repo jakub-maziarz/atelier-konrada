@@ -1,12 +1,12 @@
-var qtyProduct = document.getElementById("quantityproduct");
+let qtyProduct = document.getElementById("quantityproduct");
 
 qtyProduct.addEventListener("input", () => {
   qtyProduct.value = "1";
 });
 
 function incrementQuantity(max) {
-  var qtyProduct = document.getElementById("quantityproduct");
-  var value = parseInt(qtyProduct.value, 10);
+  let qtyProduct = document.getElementById("quantityproduct");
+  let value = parseInt(qtyProduct.value, 10);
   value = isNaN(value) ? 0 : value;
   console.log(parseInt(max, 10) == 0);
   if (parseInt(max, 10) == 0) {
@@ -20,8 +20,8 @@ function incrementQuantity(max) {
 }
 
 function decrementQuantity() {
-  var qtyProduct = document.getElementById("quantityproduct");
-  var value = parseInt(qtyProduct.value, 10);
+  let qtyProduct = document.getElementById("quantityproduct");
+  let value = parseInt(qtyProduct.value, 10);
   value = isNaN(value) ? 0 : value;
   if (value > 1) {
     value--;
@@ -32,9 +32,9 @@ function decrementQuantity() {
 $(".product-button").click(function (e) {
   e.preventDefault();
 
-  var product_id = $(this).closest(".add-to-cart").find(".prod_id").val();
-  var product_qty = $(".productquantity").val();
-  var token = $(this).closest(".add-to-cart").find("input[name=csrfmiddlewaretoken").val();
+  let product_id = $(this).closest(".add-to-cart").find(".prod_id").val();
+  let product_qty = $(".productquantity").val();
+  let token = $(this).closest(".add-to-cart").find("input[name=csrfmiddlewaretoken").val();
 
   $.ajax({
     type: "POST",

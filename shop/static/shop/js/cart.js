@@ -1,12 +1,12 @@
 $(document).on("click", ".plusQty", function (e) {
   e.preventDefault();
 
-  var product_id = $(this).closest(".order-product").find(".cart_prod_id").val();
-  var product_qty = $(this).closest(".product-qty-buttons").find(".productquantity");
-  var product_qty_value = product_qty.val();
+  let product_id = $(this).closest(".order-product").find(".cart_prod_id").val();
+  let product_qty = $(this).closest(".product-qty-buttons").find(".productquantity");
+  let product_qty_value = product_qty.val();
   product_qty_value++;
-  var token = $(this).closest(".order-product").find("input[name=csrfmiddlewaretoken").val();
-  var price_info = $(this).closest(".qty-price").find(".price");
+  let token = $(this).closest(".order-product").find("input[name=csrfmiddlewaretoken").val();
+  let price_info = $(this).closest(".qty-price").find(".price");
 
   $.ajax({
     type: "POST",
@@ -43,12 +43,12 @@ $(document).on("click", ".plusQty", function (e) {
 $(document).on("click", ".minusQty", function (e) {
   e.preventDefault();
 
-  var product_id = $(this).closest(".order-product").find(".cart_prod_id").val();
-  var product_qty = $(this).closest(".product-qty-buttons").find(".productquantity");
-  var product_qty_value = product_qty.val();
+  let product_id = $(this).closest(".order-product").find(".cart_prod_id").val();
+  let product_qty = $(this).closest(".product-qty-buttons").find(".productquantity");
+  let product_qty_value = product_qty.val();
   product_qty_value--;
-  var token = $(this).closest(".order-product").find("input[name=csrfmiddlewaretoken").val();
-  var price_info = $(this).closest(".qty-price").find(".price");
+  let token = $(this).closest(".order-product").find("input[name=csrfmiddlewaretoken").val();
+  let price_info = $(this).closest(".qty-price").find(".price");
 
   if (product_qty_value != 0) {
     $.ajax({
@@ -87,8 +87,8 @@ $(document).on("click", ".minusQty", function (e) {
 $(document).on("click", ".product-delete", function (e) {
   e.preventDefault();
 
-  var product_id = $(this).closest(".order-product").find(".cart_prod_id").val();
-  var token = $(this).closest(".order-product").find("input[name=csrfmiddlewaretoken").val();
+  let product_id = $(this).closest(".order-product").find(".cart_prod_id").val();
+  let token = $(this).closest(".order-product").find("input[name=csrfmiddlewaretoken").val();
   $.ajax({
     type: "POST",
     url: "/delete-from-cart",
